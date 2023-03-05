@@ -1,0 +1,17 @@
+name: TeamFriendlyFire
+version: 1.0
+author: Jos
+website: https://joscodes.xyz/
+main: xyz.joscodes.teamfriendlyfire.FriendlyFirePlugin
+api-version: 1.13
+
+commands:
+  friendlyfire:
+    description: Enables or disables friendly fire for a team
+    usage: /friendlyfire <team> <true/false>
+    console: true
+
+permissions:
+  teamfriendlyfire.use:
+    description: Allows players to use the /friendlyfire command
+    default: op
