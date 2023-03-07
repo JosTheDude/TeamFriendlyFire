@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Team;
 
 import java.util.Objects;
 
@@ -35,8 +36,13 @@ public class FriendlyFirePlugin extends JavaPlugin implements Listener {
 	public void onEntityDamage(EntityDamageByEntityEvent event) {
 		if (!(event.getDamager() instanceof Player damager) || !(event.getEntity() instanceof Player victim)) return;
 
-		if (friendlyFireEnabled && damager.getScoreboard().getEntryTeam(damager.getName()) == victim.getScoreboard().getEntryTeam(victim.getName())) {
-			event.setCancelled(true);
+		if (damager.getScoreboard().getEntryTeam(damager.getName()) == victim.getScoreboard().getEntryTeam(victim.getName())) {
+			Team team = damager.getScoreboard().getEntryTeam(damager.getName());
+			assert team != null;
+			if (team.getOption(Team.Option.COLLISION_RULE) == Team.OptionStatus.NEVER) {
+				event.setCancelled(true);
+			}
 		}
+
 	}
 }
