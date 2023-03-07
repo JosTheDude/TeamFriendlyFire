@@ -36,6 +36,8 @@ public class FriendlyFirePlugin extends JavaPlugin implements Listener {
 	public void onEntityDamage(EntityDamageByEntityEvent event) {
 		if (!(event.getDamager() instanceof Player damager) || !(event.getEntity() instanceof Player victim)) return;
 
+		// Collision Check
+
 		if (damager.getScoreboard().getEntryTeam(damager.getName()) == victim.getScoreboard().getEntryTeam(victim.getName())) {
 			Team team = damager.getScoreboard().getEntryTeam(damager.getName());
 			assert team != null;
